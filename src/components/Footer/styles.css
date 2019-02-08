@@ -1,0 +1,66 @@
+footer {
+    border-top: 2px solid #e8e8e8;
+    background-color: #2e2e2e;
+    color: #bfbfbf;
+}
+.row {
+    margin: 0;
+    padding: 60px 30px;
+}
+.col-md-6 {
+    width: 50%;
+    display: inline-block;
+}
+
+.row > div > h3,
+.row > div > h5 {
+    margin-top: 0;
+    text-transform: uppercase;
+}
+.row > div > p {
+    margin-top: 0;
+} 
+
+.icons {
+    display: flex;
+    justify-content: center;
+}
+.icons > a {
+    color: #bfbfbf;
+}
+.icons > a > .icon-border {
+    width: calc(30px - (2px / 2));
+    height: calc(30px - (2px / 2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #bfbfbf;
+    border-radius: 50%;
+}
+.icons > a > .icon-border > .icon-ig,
+.icons > a > .icon-border > .icon-fb,
+.icons > a > .icon-border > .icon-linkedin { 
+    position: relative;
+    width: 15px;
+    height: 15px;
+}
+.icons > a > .icon-border > .icon-ig > svg,
+.icons > a > .icon-border > .icon-fb > svg,
+.icons > a > .icon-border > .icon-linkedin > svg  { 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 768px){
+    .col-s-12 {
+        width: 100%;
+    }
+    .row {
+        padding: 30px 45px;
+    }
+}
