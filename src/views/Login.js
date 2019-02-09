@@ -1,10 +1,15 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import Header from './../components/Header';
-import Footer from './../components/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 class Login extends React.Component {
+    componentDidMount(){
+        if(localStorage.getItem('data')){
+            this.props.history.push('/blog');
+        }
+    }
     constructor(){
         super();
         this.state = {
@@ -21,18 +26,22 @@ class Login extends React.Component {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({email: this.state.email, password: this.state.password})
+            body: JSON.stringify({
+                email: this.state.email, 
+                password: this.state.password
+            })
         }).then(response => {
             return response.json();
         }).then(obj => {
             console.log(obj.status);
             if(obj.status === 302) {
+                localStorage.setItem('data', obj.token);
                 console.log("You are signed in");
-                this.props.history.push('/home');
+                this.props.history.push('/blog');
             }
         });
     }
-    _handleUsernameChange = (event) => {
+    _handleEmailChange = (event) => {
         this.setState({
             email: event.target.value
         })
@@ -47,7 +56,7 @@ class Login extends React.Component {
             <div>
                 <Header/>
                 <form onSubmit={this._handleSubmit}>
-                    Username<input type="text" onChange={this._handleUsernameChange}/>
+                    Email<input type="text" onChange={this._handleEmailChange}/>
                     Password<input type="password" onChange={this._handlePasswordChange}/>
                     <input type="submit" value="Submit" />
                 </form>

@@ -10,6 +10,7 @@ footer {
 .col-md-6 {
     width: 50%;
     display: inline-block;
+    text-align: center;
 }
 
 .row > div > h3,

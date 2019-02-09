@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 
 import Tag from './views/Tag';
-import Home from './views/Home';
+import HomeBlog from './views/HomeBlog';
 import Login from './views/Login';
 import Counter from './views/Counter';
 import CreateBlog from './views/CreateBlog';
@@ -18,11 +18,12 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={Login}/>
+            <Route exact path='/login' component={Login}/>
             <Route exact path='/:tagName/get/:page' component={Tag}/>
-            <Route exact path='/home/:page' component={Home}/>
-            <Route exact path='/home' component={Home}/>
-            <Route exact path='/counter' component={Counter}/>
+            <Route exact path='/blog' component={HomeBlog}/>
             <Route exact path='/blog/create' component={CreateBlog}/>
+            <Route exact path='/blog/:page' component={HomeBlog}/>
+            <Route exact path='/counter' component={Counter}/>
             <Route exact path='/logout' component={Logout}/>
           </Switch>
         </BrowserRouter>
