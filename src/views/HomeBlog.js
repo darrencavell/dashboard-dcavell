@@ -25,7 +25,7 @@ class HomeBlog extends Component {
     const links = [];
     for (let i = 1; i <= this.state.pages; i++) {
       links.push(
-        <Link to={`/blog/${i}`} onClick={(e) => this._refreshPage(i)} key={i}>{i}</Link>
+        <Link to={`/blog/${i}`} className="pagination" onClick={(e) => this._refreshPage(i)} key={i}>{i}</Link>
       )
     }
     return links;
@@ -48,6 +48,7 @@ class HomeBlog extends Component {
     console.log(this.state.content);
   }
   componentDidUpdate(prevProps, prevState){
+    if (prevState.pageNumber !== this.state.pageNumber) {
       fetch(`http://localhost:3030/blog/get/${this.state.pageNumber}`, {
         method: 'GET',
         headers: {
@@ -56,26 +57,33 @@ class HomeBlog extends Component {
       }).then(response => {
         return response.json()
       }).then(obj => {
-        if (prevState.pageNumber !== this.state.pageNumber) {
           this.setState({
             content: obj.content,
             pages: obj.pages
           });
-        }
       })
+    }
   }
   render() {
     return (
       <div>
         <Header/>
-        { 
-          this.state.content === '' ? 'NOTHING' : this.state.content.map(blog => {
-            return <Blog key={blog.id} blog={blog}/>
-          })
-        }
-        {
-          this.state.pages === '' ? 'NOTHING 2' :  <span>{this._generatePages()}</span>
-        }
+        <div className="container">
+          <div className="horizontal-center">
+            <div className="blog-list">
+            { 
+              this.state.content === '' ? 'NOTHING' : this.state.content.map(blog => {
+                return <Blog key={blog.id} blog={blog}/>
+              })
+            }
+            </div>
+            <div className="page-list">
+            {
+              this.state.pages === '' ? 'NOTHING 2' :  <div>{this._generatePages()}</div>
+            }
+            </div>
+          </div>
+        </div>
         <Footer/>
       </div>
     );

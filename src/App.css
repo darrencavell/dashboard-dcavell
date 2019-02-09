@@ -76,7 +76,7 @@ form {
 .container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 40px;
   width: 100%;
@@ -85,13 +85,55 @@ form {
 .gap-section {
   width: 10vw;
 }
-
 @media screen and (max-width: 768px){
   .container {
+    padding: 5px;
     flex-direction: column;
   }
   .gap-section {
     width: 100vw;
     height: 5vh;
   }
+  .tag-style {
+    font-size: 12px;
+  }
+}
+
+.tag-style {
+  border-radius: 3px;
+  background-color: #2cbe4e;
+  color: #fff;
+  display: inline-block;
+  font-weight: 600;
+  padding: 4px 8px;
+  line-height: 20px;
+  margin-right: 5px;
+}
+.tag-style:nth-last-of-type(1){
+  margin-right: 0;
+}
+
+
+a.pagination {
+  border-radius: 3px;
+  background-color: #eff3f6;
+  font-weight: 600;
+  width: 48px;
+  height: 48px;
+  padding: 4px 4px;
+  margin-right: 5px;
+  color: #24292e;
+  border: 1px solid rgba(27,31,35,.2);
+}
+a.pagination:nth-last-of-type(1) {
+  margin-right: 0;
+  color: #24292e;
+}
+
+.horizontal-center {
+  margin: 0 auto;
+}
+.page-list {
+  display: flex;
+  justify-content: center;
 }

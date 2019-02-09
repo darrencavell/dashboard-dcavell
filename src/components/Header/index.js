@@ -8,7 +8,7 @@ class Header extends React.Component {
         return(
             <header>
                 <div className="header-left">
-                    <img src={"../../../../img/logo.jpg"}/>
+                    <img src={"../../../img/logo.jpg"}/>
                 </div>
                 <div className="header-gap"></div>
                 <div className="header-right">

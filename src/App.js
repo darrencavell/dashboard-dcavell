@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
-import Tag from './views/Tag';
+import HomeTag from './views/HomeTag';
 import HomeBlog from './views/HomeBlog';
 import Login from './views/Login';
 import Counter from './views/Counter';
@@ -19,7 +19,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Login}/>
             <Route exact path='/login' component={Login}/>
-            <Route exact path='/:tagName/get/:page' component={Tag}/>
+            <Route exact path='/:tagName/get/:page' component={HomeTag}/>
             <Route exact path='/blog' component={HomeBlog}/>
             <Route exact path='/blog/create' component={CreateBlog}/>
             <Route exact path='/blog/:page' component={HomeBlog}/>
