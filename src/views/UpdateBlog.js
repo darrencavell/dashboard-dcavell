@@ -4,14 +4,12 @@ import {withRouter} from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-class CreateBlog extends React.Component {
+class UpdatedBlog extends React.Component {
     constructor(){
         super();
         this.state = {
             name: '',
             content: '',
-            tags: [],
-            listTags: []
         }
     }
     _handleSubmit = (event) => {
@@ -19,29 +17,28 @@ class CreateBlog extends React.Component {
         console.log(this.state.name);
         console.log(JSON.stringify({
             name: this.state.name,
-            content: this.state.content,
-            tags: this.state.tags
+            content: this.state.content
         }));
-        fetch('http://localhost:3030/blog/create', {
-            method: 'POST',
+        fetch('http://localhost:3030/blog/update', {
+            method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('data') 
             }),
             body: JSON.stringify({
+                id: this.props.match.params.id,
                 name: this.state.name,
-                content: this.state.content,
-                tags: this.state.tags
+                content: this.state.content
             })
         }).then(response => {
             console.log(response);
             return response.json()
         }).then(obj => {
             console.log(obj);
-            if(obj.created === true)
+            if(obj.updated === true)
                 this.props.history.push('/blog');
-            else if(obj.created === false)
-                this.props.history.push('/blog/create');
+            else if(obj.updated === false)
+                this.props.history.push('/blog/update');
             else if(obj.isAuthenticated === false)
                 this.props.history.push('/login');
         })
@@ -100,22 +97,6 @@ class CreateBlog extends React.Component {
         if(localStorage.getItem('data') === null){
             this.props.history.push('/blog');
         }
-        fetch('http://localhost:3030/tags', {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json'
-            },
-        }).then(response => {
-            return response.json();
-        }).then(obj => {
-            console.log('OBJ');
-            console.log(obj)
-            this.setState({
-                listTags: obj
-            })
-            console.log('LISTTAGS')
-            console.log(this.state.listTags);
-        })
     }
     render(){
         console.log('RENDER LSIT TAGS')
@@ -125,8 +106,8 @@ class CreateBlog extends React.Component {
                 <Header/>
                 <div className="container">
                     <div className="title-section">
-                        <h1 className="">Create Blog</h1>
-                        <p>The best way to communicate to other is by blogging!</p>
+                        <h1 className="">Update Blog</h1>
+                        <p>Feel free to do changes to you blog!</p>
                     </div>
                     <div className="gap-section"></div>
                     <form onSubmit={this._handleSubmit}>
@@ -138,33 +119,6 @@ class CreateBlog extends React.Component {
                             <label>Blog Content</label>
                             <textarea rows="4" className="form-control" onChange={this._handleContentChanged} placeholder="Content"/>
                         </div>
-                        <div className="form-group">
-                            <label>Blog Tags</label>
-                            {
-                                this.state.listTags.length === 0 ? '' : (
-                                    <select onChange={this._addTag} className="form-control">
-                                        {
-                                            this.state.listTags.map(tag => {
-                                                return <option key={tag.id + tag.name} value={tag.id}>{tag.name}</option>
-                                            })
-                                        }
-                                    </select>
-                                )
-                            }
-                            <br/>
-                        </div>
-                        {
-                            this.state.tags.length != 0 ? ( 
-                                <div className="form-group">
-                                    <label>Tag Selected</label>
-                                    <div className="form-control">
-                                        {
-                                            this._generateTags()
-                                        }
-                                    </div>
-                                </div>
-                            ) : ''
-                        }
                         <input type="submit" value="Create"/>
                     </form>
                 </div>
@@ -174,4 +128,4 @@ class CreateBlog extends React.Component {
     }
 }
 
-export default withRouter(CreateBlog);
+export default withRouter(UpdatedBlog);

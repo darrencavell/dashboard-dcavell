@@ -9,6 +9,7 @@ class HomeTag extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            userId: 0,
             pages: 0,
             content: '',
             tag: props.match.params.tagName ? props.match.params.tagName : '',
@@ -36,6 +37,21 @@ class HomeTag extends React.Component {
         return links;
     }
     componentDidMount(){
+        fetch(`http://localhost:3030/checkauth`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + localStorage.getItem('data') 
+            },
+            }).then(response => {
+            return response.json()
+            }).then(obj => {
+            console.log('checkaut');
+            console.log(obj);
+            this.setState({
+                userId: obj.userId
+            });
+        })
         fetch(`http://localhost:3030/${this.state.tag}/get/${this.state.pageNumber}`, {
             method: 'GET',
             headers: {
@@ -85,7 +101,7 @@ class HomeTag extends React.Component {
                             this.state.content === '' ? 'NOTHING' : this.state.content.map(blogTag => {
                                 console.log("BLLOG TAG");
                                 console.log(blogTag);
-                                return <Blog key={blogTag.id} blog={blogTag.Blog} triggerTagUpdate={(tagName) => this._refreshTag(tagName)}/>
+                                return <Blog key={blogTag.id} blog={blogTag.Blog} triggerTagUpdate={(tagName) => this._refreshTag(tagName)} owner={this.state.userId}/>
                                 // return <span style={{display: 'block', backgroundColor: 'yellow'}}>{blogTag.Blog.id} {blogTag.Tag.id}</span>
                             })
                         }

@@ -27,20 +27,29 @@ h2, h5, p {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     color: #586069;
+    border-bottom: 1px solid #d1d5da;
+    display: flex;
 }
-.blog-post > .user-content > .description-section > .title {
+.blog-post > .user-content > .description-section > .user-detail {
+    flex: 1 1 auto;
+}
+.blog-post > .user-content > .description-section > .user-detail > .title {
     border-bottom: 1px solid #d1d5da;
 }
-.blog-post > .user-content > .description-section > h2 {
+.blog-post > .user-content > .description-section > .user-detail > h2 {
     font-size: 14px;
     font-weight: bold; 
 }
-.blog-post > .user-content > .description-section > h5 {
+.blog-post > .user-content > .description-section > .user-detail > h5 {
     font-size: 8px;
 }
-.blog-post > .user-content > .description-section > p {
+.blog-post > .user-content > .description-section > .user-detail > p {
     font-size: 8px;
-
+}
+.blog-post > .user-content > .description-section > .user-configure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .blog-post > .user-content > .content-section > h2 {
     font-size: 18px;

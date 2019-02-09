@@ -19,9 +19,19 @@ class Blog extends React.Component {
                 </div>
                 <div className="user-content">
                     <div className="description-section">
-                        <h2>{this.props.blog.User.name}</h2>
-                        <h5>{this.props.blog.User.email}</h5>
-                        <p>Last Update: {this.props.blog.updatedAt}</p>
+                        <div className="user-detail">
+                            <h2>{this.props.blog.User.name}</h2>
+                            <h5>{this.props.blog.User.email}</h5>
+                            <p>Last Update: {this.props.blog.updatedAt}</p>
+                        </div>
+                            {
+                                this.props.owner !== undefined && this.props.owner === this.props.blog.userId ? (
+                                    <div className="user-configure">
+                                        <Link to={`/blog/update/${this.props.blog.id}`} className="update-style">Update</Link>
+                                        <Link to={`/blog/delete/${this.props.blog.id}`} className="delete-style">Delete</Link>
+                                    </div>
+                                ) : ''
+                            }
                     </div>
                     <div className="content-section">
                         <div className="title">

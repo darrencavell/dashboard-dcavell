@@ -9,6 +9,7 @@ class HomeBlog extends Component {
   constructor(props){
     super(props);
     this.state = {
+      userId: 0,
       pages: 0,
       content: '',
       pageNumber: props.match.params.page ? props.match.params.page : 1
@@ -31,6 +32,21 @@ class HomeBlog extends Component {
     return links;
   }
   componentDidMount(){
+    fetch(`http://localhost:3030/checkauth`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + localStorage.getItem('data') 
+      },
+    }).then(response => {
+      return response.json()
+    }).then(obj => {
+      console.log('checkaut');
+      console.log(obj);
+      this.setState({
+        userId: obj.userId
+      });
+    })
     fetch(`http://localhost:3030/blog/get/${this.state.pageNumber}`, {
       method: 'GET',
       headers: {
@@ -73,7 +89,7 @@ class HomeBlog extends Component {
             <div className="blog-list">
             { 
               this.state.content === '' ? 'NOTHING' : this.state.content.map(blog => {
-                return <Blog key={blog.id} blog={blog}/>
+                return <Blog key={blog.id} blog={blog} owner={this.state.userId}/>
               })
             }
             </div>

@@ -65,12 +65,20 @@ form {
   width: 100%;
 }
 
+.form-group > label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 7px;
+}
+
 .form-control {
   display: block;
   width: 100%;
   padding: .375rem .75rem;
   border: 1px solid #ced4da;
-  border-radius: .25rem;
+  border-radius: .25rem;    
+  margin-bottom: 15px;
+  margin-top: 5px;
 }
 
 .container {
@@ -113,6 +121,26 @@ form {
   margin-right: 0;
 }
 
+.update-style {
+  border-radius: 3px;
+  background-color: #1277eb;
+  color: #fff;
+  display: inline-block;
+  font-weight: 600;
+  padding: 4px 8px;
+  line-height: 20px;
+  margin-right: 5px;
+}
+.delete-style {
+  border-radius: 3px;
+  background-color: #7C0A02;
+  color: #fff;
+  display: inline-block;
+  font-weight: 600;
+  padding: 4px 8px;
+  line-height: 20px;
+  margin-right: 5px;
+}
 
 a.pagination {
   border-radius: 3px;
@@ -136,4 +164,32 @@ a.pagination:nth-last-of-type(1) {
 .page-list {
   display: flex;
   justify-content: center;
+}
+
+/* Login */
+.background {
+  background-color: #FAFCFB;
+  height: 100vh;
+}
+.login-header {
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.login-form {
+  margin: 0 auto;
+  width: 340px;
+  background-color: #fff;
+  border: 1px solid #d8dee2;
+  font-size: 14px;
+  padding: 20px;
+  border-radius: 5px;
+}
+.btn-primary {
+  background-color: #28a745;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 600;
 }

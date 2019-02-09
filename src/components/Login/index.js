@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import './styles.css';
+
 class Login extends React.Component {
     constructor(){
         super();
@@ -39,7 +41,7 @@ class Login extends React.Component {
     }
     render(){
         return(
-            <div>
+            <div className="login-form">
                 <form onSubmit={this._handleSubmit}>
                     Username<input type="text" onChange={this._handleUsernameChange}/>
                     Password<input type="password" onChange={this._handlePasswordChange}/>

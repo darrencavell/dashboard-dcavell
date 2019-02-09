@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-
+import {connect} from 'react-redux';
+import {authUser} from './../redux/actions';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -53,14 +54,24 @@ class Login extends React.Component {
     }
     render(){
         return(
-            <div>
-                <Header/>
-                <form onSubmit={this._handleSubmit}>
-                    Email<input type="text" onChange={this._handleEmailChange}/>
-                    Password<input type="password" onChange={this._handlePasswordChange}/>
-                    <input type="submit" value="Submit" />
-                </form>
-                <Footer/>
+            <div className="background">
+                <div className="login-header">
+                    <img src={"../../img/logo.jpg"}></img>
+                    <h1>Sign in to dcavell</h1>
+                </div>
+                <div className="login-form">
+                    <form onSubmit={this._handleSubmit}>
+                        <div className="form-group">
+                            <label>Email address</label>
+                            <input type="text" className="form-control" onChange={this._handleEmailChange}/>
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="password" className="form-control"  onChange={this._handlePasswordChange}/>
+                        </div>
+                        <input type="submit" className="form-control btn-primary" value="Submit" />
+                    </form>
+                </div>
             </div>
         )
     }
