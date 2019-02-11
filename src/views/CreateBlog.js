@@ -76,7 +76,7 @@ class CreateBlog extends React.Component {
                 this.state.tags.map(tagSelected => {
                     console.log(tagSelected);
                     const arr = this.state.listTags;
-                    return <a href="" style={{cursor: 'pointer'}} onClick={(e) => {
+                    return <a href="" className="tag-style" onClick={(e) => {
                         e.preventDefault();
                         console.log(tagSelected);
                         this._removeTag(tagSelected)}
